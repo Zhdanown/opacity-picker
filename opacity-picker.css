@@ -1,0 +1,21 @@
+.op-container {
+    /* background: black; */
+}
+
+.op-bar {
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    border: 1px solid white;
+    background: linear-gradient(to right, transparent, dodgerblue);
+    /* padding: 2px; */
+    position: relative;
+}
+
+.op-slider {
+    border: 2px solid white;
+    width: 15px;
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+}
