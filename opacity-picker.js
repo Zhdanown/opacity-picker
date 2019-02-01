@@ -2,17 +2,21 @@
 
 var op_picker = (function() {
     var opacity;
-    var defaultOpacityValue = 0.5;
+    var defaultOpacity = 0.5;
+    var color;
+    var defaultColor = '#999999';
 
     // References to DOM elements
     var container,
         bar,
         slider;
 
-    function _initiate (id, opacityValue) {
+    function _initiate (id, opacityValue, colorValue) {
 
         // Initial opacity value
-        opacity = opacityValue || defaultOpacityValue;
+        opacity = opacityValue || defaultOpacity;
+        // Initial color value
+        color = colorValue || defaultColor;
 
         // Handle DOM Elements
         container = document.getElementById(id);
@@ -26,6 +30,9 @@ var op_picker = (function() {
 
         // Set slider on start position
         setSliderPositionByOpacity(opacity);
+
+        // Set initial bar color
+        op_picker.setColor(color);
 
         // Attach event handlers
         bar.addEventListener('click', function(e) {
@@ -96,11 +103,11 @@ var op_picker = (function() {
             _initiate(id)
         },
         getColor: function () {
-            bar.style.backgroundColor;
-            debugger;
+            return color;
         },
-        setColor: function (color) {
-            bar.style.background = `linear-gradient(to right, transparent, ${color})`
+        setColor: function (colorValue) {
+            color = colorValue;
+            bar.style.background = `linear-gradient(to right, transparent, ${color})`;
         },
         getOpacity: function () {
             return opacity;
@@ -119,18 +126,3 @@ var op_picker = (function() {
 
 op_picker.init('opacity-picker');
 
-document.addEventListener('keypress', e => {
-    if (e.key == 'w')
-        op_picker.setColor('wheat')
-    if (e.key == 'r')
-        op_picker.setColor('coral')
-    if (e.key == 'b')
-        op_picker.setColor('dodgerblue')
-    if (e.key == 'g')
-        op_picker.setColor('lightgreen')
-
-    let c = op_picker.getOpacity();
-    
-    op_picker.setOpacity(1)
-    
-})
